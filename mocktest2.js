@@ -39,5 +39,21 @@ function getTotalX(a, b) {
     return count;
   
 }
-const result = getTotalX([2, 4], [16, 32, 64,96]);
+
+function anagram(s) {
+    if(s.length%2!==0){
+        return -1;
+    }
+    const arr1=s.slice(0, s.length/2).split('');
+    const arr2=s.slice(s.length/2).split('');
+    for(let i=0;i<arr1.length;i++){
+        // we can delete the arr2 element every time we find the element in arr1
+        if(arr2.includes(arr1[i])){
+            arr2.splice(arr2.indexOf(arr1[i]), 1);
+        }
+    }
+    return arr2.length;
+
+}
+const result = anagram('xyyx');
 console.log(result)
