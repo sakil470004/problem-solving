@@ -8,15 +8,15 @@ var removeDuplicates = function (nums) {
     }
     if (nums[i] === nums[i + 1]) {
       count++;
-        nums[currentMaxDualIndex] = nums[i + 1];
-        currentMaxDualIndex++;
+      nums[currentMaxDualIndex] = nums[i + 1];
+      currentMaxDualIndex++;
     } else {
       nums[currentMaxDualIndex] = nums[i + 1];
       currentMaxDualIndex++;
-      count = 1;
+      count = 1; //reset index
     }
   }
-    return currentMaxDualIndex;
+  return currentMaxDualIndex;
 };
 const result = removeDuplicates([0, 0, 1, 1, 1, 1, 2, 3, 3]);
 console.log(result); // Expected output: 7
