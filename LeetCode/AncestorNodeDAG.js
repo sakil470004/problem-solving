@@ -2,14 +2,15 @@ var getAncestors = function(n, edges) {
     let ancestorNodes = new Array(n).fill(0).map(() => new Set());
     let adjList = new Array(n).fill(0).map(() => []);
     
-    // Build adjacency list
+    // Build adjacency list// v is index which is node 
     for (let [u, v] of edges) {
         adjList[v].push(u);
     }
-    
+    console.log(adjList)
     // Function to perform DFS and gather ancestors
     function dfs(node, ancestors) {
         for (let parent of adjList[node]) {
+            // if parent is not in ancestors then add parent to ancestors and call dfs function for new parent
             if (!ancestors.has(parent)) {
                 ancestors.add(parent);
                 dfs(parent, ancestors);
@@ -28,5 +29,5 @@ var getAncestors = function(n, edges) {
     return result;
 };
 
-const result = getAncestors(9, [[3,6],[2,4],[8,6],[7,4],[1,4],[2,1],[7,2],[0,4],[5,0],[4,6],[3,2],[5,6],[1,6]]);
+const result = getAncestors(8, [[0,3],[0,4],[1,3],[2,4],[2,7],[3,5],[3,6],[3,7],[4,6]]);
 console.log(result);
