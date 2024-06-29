@@ -1,27 +1,26 @@
 function minimumBribes(q) {
-  // Write your code here
-  const bribesArray = new Array(q.length + 1).fill(0);
-  let bribes = 0;
-  for (let i = 0; i < q.length - 1; i++) {
-    for (let j = i + 1; j < q.length; j++) {
-      if (q[i] > q[j]) {
-        bribesArray[q[i]] = bribesArray[q[i]] + 1;
-        let temp = q[i];
-        q[i] = q[j];
-        q[j] = temp;
-        // console.log("bribesArray:", bribesArray, "q[i]:", q[i]);
-        bribes++;
+    // Total number of bribes
+    let bribes = 0;
+  
+    // Loop through each person in the queue
+    for (let i = 0; i < q.length; i++) {
+      // Check if the current person has moved more than two positions ahead
+      if (q[i] - (i + 1) > 2) {
+        console.log("Too chaotic");
+        return;
+      }
+  
+      // Count the number of bribes by counting the number of people ahead
+      // of q[i] who originally had a higher number than q[i].
+      for (let j = Math.max(0, q[i] - 2); j < i; j++) {
+        if (q[j] > q[i]) {
+          bribes++;
+        }
       }
     }
+  
+    // Output the total number of bribes
+    console.log(bribes);
   }
-  for (let i = 0; i < bribesArray.length; i++) {
-    if (bribesArray[i] > 2) {
-      console.log("Too chaotic");
-      return;
-    }
-  }
-  console.log(bribes);
-  return;
-}
 const result = minimumBribes([2, 5, 1, 3, 4]);
 console.log(result); // Expected output: 4
