@@ -6,6 +6,6 @@ const recursiveFunction = (n) => {
   console.log(n);
   recursiveFunction(n - 1);
   console.log(n);
+  return;
 };
-const result = recursiveFunction(5);
-console.log(result);
+ recursiveFunction(5);
