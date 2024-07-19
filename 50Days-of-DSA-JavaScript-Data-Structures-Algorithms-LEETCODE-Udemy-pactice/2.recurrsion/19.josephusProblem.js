@@ -1,3 +1,4 @@
+// ! Approach 1
 var findTheWinner = function (n, k) {
   // n=3; arr=[1,2,3]
   let array = Array.from({ length: n }, (_, i) => i + 1);
@@ -16,8 +17,19 @@ var findTheWinner = function (n, k) {
   }
   return helper(array, 0);
 };
-const findTheWinner2 = (n, k) => {};
-const result = findTheWinner(4, 2);
-const result2 = findTheWinner2(4, 2);
+// ! Approach 2
+const findTheWinner2 = (n, k) => {
+  function josephus(n) {
+    //* base case
+    if (n === 1) {
+      return 0;
+    }
+    //* recursive case
+    return (josephus(n - 1) + k) % n;
+  }
+  return josephus(n) + 1;
+};
+const result = findTheWinner(6, 2);
+const result2 = findTheWinner2(6, 2);
 console.log(result);
 console.log(result2);
