@@ -29,7 +29,19 @@ const findTheWinner2 = (n, k) => {
   }
   return josephus(n) + 1;
 };
+
+// ! approach 3
+const findTheWinner3 = (n, k) => {
+  let survivor = 0;
+  for (let i = 2; i <= n; i++) {
+    survivor = (survivor + k) % i;
+  }
+
+  return survivor + 1;
+};
 const result = findTheWinner(6, 2);
 const result2 = findTheWinner2(6, 2);
+const result3 = findTheWinner2(6, 2);
 console.log(result);
 console.log(result2);
+console.log(result3);
