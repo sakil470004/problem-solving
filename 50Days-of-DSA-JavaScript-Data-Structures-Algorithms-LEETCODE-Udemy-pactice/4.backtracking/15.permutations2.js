@@ -14,6 +14,7 @@ var permuteUnique = function (nums) {
     }
     //* recursive case
     var hash = {};
+    //   loop the array
     for (let j = index; j < n; j++) {
       if (!hash[nums[j]]) {
         // ! add hash to hash table
@@ -30,5 +31,5 @@ var permuteUnique = function (nums) {
   permutations(0);
   return res;
 };
-const result = permuteUnique([1, 1,2]);
+const result = permuteUnique([1, 1, 2]);
 console.log(result);
