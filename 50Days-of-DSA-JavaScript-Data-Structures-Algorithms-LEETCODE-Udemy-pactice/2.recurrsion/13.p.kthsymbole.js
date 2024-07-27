@@ -10,15 +10,16 @@ const kthSymbol = (n, k) => {
     return 0;
   }
   //* recursive case
-    let length = Math.pow(2, n - 1);
-    let mid = length / 2;
-    if(k<=mid){
-        return kthSymbol(n-1,k);
-    }else{
-        return 1-kthSymbol(n-1,k-mid);
-    }
+  let length = Math.pow(2, n - 1);
+  let mid = length / 2;
+  if (k <= mid) {
+    return kthSymbol(n - 1, k);
+  } else {
+    // ! 1- if out put is 1 it will make output 0 if output is 0 it make output 1
+    return 1 - kthSymbol(n - 1, k - mid);
+  }
 };
-
+//note: it would not working becouse it k cannot 0 . so it return 0. console.log(kthSymbol(4, 0));
 console.log(kthSymbol(4, 1));
 console.log(kthSymbol(4, 2));
 console.log(kthSymbol(4, 3));
