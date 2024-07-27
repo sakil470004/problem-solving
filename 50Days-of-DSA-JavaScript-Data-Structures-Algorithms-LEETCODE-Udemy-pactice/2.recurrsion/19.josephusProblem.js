@@ -31,7 +31,8 @@ var findTheWinner = function (n, k) {
   }
   return helper(array, 0);
 };
-// ! Approach 2
+// ! Approach 2 
+// ! if we know the solution of n-1 then we can solve n
 const findTheWinner2 = (n, k) => {
   function josephus(n) {
     //* base case
