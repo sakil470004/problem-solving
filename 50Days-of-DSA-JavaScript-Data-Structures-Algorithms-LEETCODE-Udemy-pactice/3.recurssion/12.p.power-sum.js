@@ -17,3 +17,4 @@ const compoundArray = [1, 2, 3, [4, 2], [[2]]];
 // ! calcluation look like [1+2+3+(4+2)^2+((2)^2)^3]
 const result = powerSum(compoundArray);
 console.log(result);
+
