@@ -30,13 +30,16 @@ var lengthOfLongestSubstring = function (s) {
   let newArray = [];
   let longest = 0;
   for (let i = 0; i < len; i++) {
-    console.log(newArray);
+    // console.log(newArray);
+    // ! if the array contains the element remove the element from the start to the index of the element. +1 is for the element itself
     if (newArray.includes(sArray[i])) {
       newArray = newArray.slice(newArray.indexOf(sArray[i]) + 1);
     }
+    // ! add the element to the array
     newArray.push(sArray[i]);
+    // ! check the longest length
     longest = Math.max(longest, newArray.length);
-    console.log(newArray);
+    // console.log(newArray);
   }
   return longest;
 };
