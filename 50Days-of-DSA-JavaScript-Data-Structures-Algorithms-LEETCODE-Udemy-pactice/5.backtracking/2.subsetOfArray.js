@@ -1,5 +1,4 @@
 // ? Given an integer array of unique elements, return all possible subsets (the power set). The solution set must not contain duplicate subsets. return the solution in any order.
-
 // *test case=> [1,7] . powerset=[[],[1],[7],[1,7]]=>(2^n)
 //! there is 2 ways solution 1.Iteratively 2.Recursively
 
@@ -17,7 +16,7 @@ const powerSet = function (nums) {
     // ? add element //include
     subsets.push(nums[i]); //? add ith index item to subset;
     helper(nums, i + 1, subsets);
-    subsets.pop();
+    subsets.pop(); //backtracking line
   };
   helper(nums, 0, []);
   return output;
