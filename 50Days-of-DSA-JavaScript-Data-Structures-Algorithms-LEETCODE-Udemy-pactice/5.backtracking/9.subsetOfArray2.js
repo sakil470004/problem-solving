@@ -4,7 +4,7 @@
 
 const subsetWithDuplicate = function (nums) {
   let res = [];
-  // sort
+  //? =>sort //so that all the same number side by side
   nums.sort((a, b) => a - b);
   function subsets(index, curr) {
     //* base case
@@ -29,5 +29,5 @@ const subsetWithDuplicate = function (nums) {
   return res;
 };
 
-const result = subsetWithDuplicate([1, 2,2]);
+const result = subsetWithDuplicate([1, 2, 2]);
 console.log(result);
