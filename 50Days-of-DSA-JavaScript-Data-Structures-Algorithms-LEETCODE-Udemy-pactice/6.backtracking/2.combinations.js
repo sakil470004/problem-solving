@@ -10,7 +10,7 @@ var combine = function (n, k) {
       return;
     }
     //*recursive case
-    // ? for optomization
+    // ? for optimization
     let need = k - curr.length;
 // need to n-need+1
     for (let j = start; j <= n - need + 1; j++) {
