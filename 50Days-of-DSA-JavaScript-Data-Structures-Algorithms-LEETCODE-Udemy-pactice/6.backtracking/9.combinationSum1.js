@@ -5,8 +5,8 @@
 // ! Example 1:
 // ! Input: candidates = [2,3,6,7], target = 7
 // ! Output: [[2,2,3],[7]]
-
-const combinationSum = (candidates, target) => {
+//! my solution
+const combinationSumOld = (candidates, target) => {
   let result = [];
   const helper = (i, subset, sum) => {
     // *base condition
@@ -14,14 +14,40 @@ const combinationSum = (candidates, target) => {
       result.push([...subset]);
       return;
     }
+    // if sum greater so we don't need any cantrided on this branch
     if (sum > target || i >= candidates.length) {
       return;
     }
     // *recursive condition
-    
+    for (let j = i; j < candidates.length; j++) {
+      subset.push(candidates[j]); //push element move to subset to that we can
+      helper(j, subset, sum + candidates[j]); //recursive to the branch
+      subset.pop(); //backtracking
+    }
   };
   helper(0, [], 0);
   return result;
 };
 
-console.log(combinationSum([2, 3, 6, 7], 7)); // [[2,2,3],[7]]
+// ? instructor code
+var combinationSum = function (candidates, target) {
+  let results = [];
+  function helper(index, curr, currSum) {
+    if (currSum > target) {
+      return;
+    }
+    if (currSum === target) {
+      results.push([...curr]);
+      return;
+    }
+    for (let j = index; j < candidates.length; j++) {
+      curr.push(candidates[j]);
+      helper(j, curr, currSum + candidates[j]);
+      curr.pop();
+    }
+  }
+  helper(0, [], 0);
+  return results;
+};
+console.log(combinationSumOld([2, 3, 4, 7], 7)); // [[2,2,3],[7]]
+console.log(combinationSum([2, 3, 4, 7], 7)); // [[2,2,3],[7]]
