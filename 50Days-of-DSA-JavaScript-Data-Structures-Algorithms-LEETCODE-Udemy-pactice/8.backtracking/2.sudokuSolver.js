@@ -18,4 +18,55 @@
 //?Question: It is guaranteed that the input board has only one solution.
 //?Question: Just find any solution.
 
+var solveSudoku = function (board) {
+  // the function modifies the board in place so we can return nothing
+  function isValidMove(board, row, col, num) {
+    for (let x = 0; x < 9; x++) {
+      if (board[x][col] === num || board[row][x] === num) {
+        return false;
+      }
+      let r = 3 * Math.floor(row / 3) + Math.floor(x / 3);
+      let c = 3 * Math.floor(col / 3) + Math.floor(x % 3);
+      if (board[r][c] === num) {
+        return false;
+      }
+    }
+    return true;
+  }
 
+  // helper function to solve the board
+  function helper(board) {
+    for (let row = 0; row < 9; row++) {
+      for (let col = 0; col < 9; col++) {
+        if (board[row][col] === ".") {
+          for (let num = 1; num <= 9; num++) {
+            let char = num.toString();
+            if (isValidMove(board, row, col, char)) {
+              board[row][col] = char;
+              if (helper(board)) {
+                return true;
+              }
+              board[row][col] = ".";
+            }
+          }
+          return false;
+        }
+      }
+    }
+    return true;
+  }
+  helper(board);
+};
+console.log(
+  solveSudoku([
+    ["5", "3", ".", ".", "7", ".", ".", ".", "."],
+    ["6", ".", ".", "1", "9", "5", ".", ".", "."],
+    [".", "9", "8", ".", ".", ".", ".", "6", "."],
+    ["8", ".", ".", ".", "6", ".", ".", ".", "3"],
+    ["4", ".", ".", "8", ".", "3", ".", ".", "1"],
+    ["7", ".", ".", ".", "2", ".", ".", ".", "6"],
+    [".", "6", ".", ".", ".", ".", "2", "8", "."],
+    [".", ".", ".", "4", "1", "9", ".", ".", "5"],
+    [".", ".", ".", ".", "8", ".", ".", "7", "9"],
+  ])
+);
