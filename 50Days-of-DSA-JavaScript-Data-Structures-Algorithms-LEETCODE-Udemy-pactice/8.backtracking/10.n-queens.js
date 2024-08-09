@@ -7,6 +7,8 @@
 
 var solveNQueens = function (n) {
   let res = [];
+  //   for mynul satisfaction
+  let max = 0;
   // create the initial board setup with all cells empty ('.')
   let board = Array(n)
     .fill()
@@ -16,7 +18,18 @@ var solveNQueens = function (n) {
   function convertBoard(board) {
     return board.map((row) => row.join(""));
   }
-
+  //   for mynul satisfaction
+  function calculateQueen(board) {
+    let currentMax = 0;
+    for (let i = 0; i < n; i++) {
+      for (let j = 0; j < n; j++) {
+        if (board[i][j] === "Q") {
+          currentMax++;
+        }
+      }
+    }
+    max = Math.max(max, currentMax);
+  }
   //Checks if it's valid to place a queen at board[row][col]
   function isValid(row, col, board) {
     // check if there is a queen in the same column
@@ -37,6 +50,8 @@ var solveNQueens = function (n) {
   function positionNextQueen(board, row) {
     // base case: if we have placed all the queens
     if (row === n) {
+      // for mynul
+      calculateQueen(board);
       res.push(convertBoard(board));
       return;
     }
@@ -49,7 +64,7 @@ var solveNQueens = function (n) {
       }
     }
   }
-    positionNextQueen(board, 0);// start from the first row
-    return res; // return the result
+  positionNextQueen(board, 0); // start from the first row
+  return [res, max,res.length]; // return the result
 };
-console.log(solveNQueens(4)); // [[".Q..","...Q","Q...","..Q."],["..Q.","Q...","...Q",".Q.."]]
+console.log(solveNQueens(8)); // [[".Q..","...Q","Q...","..Q."],["..Q.","Q...","...Q",".Q.."]]
