@@ -68,3 +68,5 @@ var solveNQueens = function (n) {
   return [res, max,res.length]; // return the result
 };
 console.log(solveNQueens(8)); // [[".Q..","...Q","Q...","..Q."],["..Q.","Q...","...Q",".Q.."]]
+//time complexity is O(n!) where n is the number of queens
+//space complexity is O(n^2) where n is the number of queens
