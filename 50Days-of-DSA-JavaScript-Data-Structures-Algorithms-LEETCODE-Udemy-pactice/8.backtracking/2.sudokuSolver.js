@@ -42,14 +42,14 @@ var solveSudoku = function (board) {
           for (let num = 1; num <= 9; num++) {
             let char = num.toString();
             if (isValidMove(board, row, col, char)) {
-              board[row][col] = char;
+              board[row][col] = char;//fill the number in the board
               if (helper(board)) {
-                return true;
+                return true;//to check if the board is solved or not
               }
-              board[row][col] = ".";
+              board[row][col] = ".";//backtracking
             }
           }
-          return false;
+          return false;//if any number do not match for current position
         }
       }
     }
