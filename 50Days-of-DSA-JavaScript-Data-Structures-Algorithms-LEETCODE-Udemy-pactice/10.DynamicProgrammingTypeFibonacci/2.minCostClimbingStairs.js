@@ -4,7 +4,7 @@
 
 // ! Ex: Input: cost = [10, 15, 20] Output: 15 Explanation: Cheapest is: start on cost[1], pay that cost, and go to the top.
 
-var minCostClimbingStairs = function (cost) {
+var minCostClimbingStairs1 = function (cost) {
   let n = cost.length;
 
   function helper(index) {
@@ -13,6 +13,28 @@ var minCostClimbingStairs = function (cost) {
     let oneStep = cost[index] + helper(index + 1);
     let twoStep = cost[index] + helper(index + 2);
     return Math.min(oneStep, twoStep);
+  }
+  //   as i can start from 0 or 1, i will take the minimum of both
+  return Math.min(helper(0), helper(1));
+};
+
+// memorization
+var minCostClimbingStairs = function (cost) {
+  let n = cost.length;
+
+  const memo = Array(n).fill(-1);
+
+  function helper(index) {
+    // base condition
+    if (index >= n) return 0;
+
+    // if already calculated
+    if (memo[index] !== -1) return memo[index];
+    // recursive case
+    let oneStep = cost[index] + helper(index + 1);
+    let twoStep = cost[index] + helper(index + 2);
+    memo[index] = Math.min(oneStep, twoStep);
+    return memo[index];
   }
   //   as i can start from 0 or 1, i will take the minimum of both
   return Math.min(helper(0), helper(1));
