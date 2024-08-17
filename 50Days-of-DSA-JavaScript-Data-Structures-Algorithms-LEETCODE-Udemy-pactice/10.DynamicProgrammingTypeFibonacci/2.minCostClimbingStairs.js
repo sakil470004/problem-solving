@@ -19,7 +19,7 @@ var minCostClimbingStairs1 = function (cost) {
 };
 
 // memorization
-var minCostClimbingStairs = function (cost) {
+var minCostClimbingStairs2 = function (cost) {
   let n = cost.length;
 
   const memo = Array(n).fill(-1);
@@ -40,4 +40,19 @@ var minCostClimbingStairs = function (cost) {
   return Math.min(helper(0), helper(1));
 };
 
+// tabulation/ Bottum up approach //storing the cost for reaching ith step from 0th step
+var minCostClimbingStairs = function (cost) {
+  let n = cost.length;
+  // storing the cost for reaching ith step from 0th step
+  let dp = Array(n + 1).fill(0); //return dp[n] 0 to n-1
+
+  dp[0] = 0;
+  dp[1] = 0;
+  for (let i = 2; i <= n; i++) {
+    let costToComeFromOneStepBack = cost[i - 1] + dp[i - 1];
+    let costToComeFromTwoStepBack = cost[i - 2] + dp[i - 2];
+    dp[i] = Math.min(costToComeFromOneStepBack, costToComeFromTwoStepBack);
+  }
+  return dp[n];
+};
 console.log(minCostClimbingStairs([10, 15, 20])); // 15
