@@ -3,7 +3,7 @@
 //give leetcode link    https://leetcode.com/problems/min-cost-climbing-stairs/
 
 // ! Ex: Input: cost = [10, 15, 20] Output: 15 Explanation: Cheapest is: start on cost[1], pay that cost, and go to the top.
-
+// this is a fibonacci series problem // it uses the concept of dynamic programming
 var minCostClimbingStairs1 = function (cost) {
   let n = cost.length;
 
@@ -18,7 +18,7 @@ var minCostClimbingStairs1 = function (cost) {
   return Math.min(helper(0), helper(1));
 };
 
-// memorization
+// memorization// it reduces the time complexity
 var minCostClimbingStairs2 = function (cost) {
   let n = cost.length;
 
@@ -53,6 +53,7 @@ var minCostClimbingStairs = function (cost) {
     let costToComeFromTwoStepBack = cost[i - 2] + dp[i - 2];
     dp[i] = Math.min(costToComeFromOneStepBack, costToComeFromTwoStepBack);
   }
+  //  as i can start from 0 or 1, i will take the minimum of both to reach the top floor from 0th or 1st step
   return dp[n];
 };
 console.log(minCostClimbingStairs([10, 15, 20])); // 15
