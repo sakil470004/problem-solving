@@ -3,8 +3,8 @@
 
 // get link from leetcode
 // https://leetcode.com/problems/01-knapsack/
-
-function KnapSack(W, wt, val, n) {
+// general approach
+function KnapSack1(W, wt, val, n) {
   function helper(index, remWeight) {
     //? base case
     if (index >= n || remWeight === 0) {
@@ -22,4 +22,11 @@ function KnapSack(W, wt, val, n) {
     return Math.max(include, exclude);
   }
   return helper(0, W);
+}
+
+
+//? time complexity is O(2^n) and space complexity is O(n)
+//? optimized approach// memoization | top-down approach
+function KnapSack2(W, wt, val, n) {
+
 }
