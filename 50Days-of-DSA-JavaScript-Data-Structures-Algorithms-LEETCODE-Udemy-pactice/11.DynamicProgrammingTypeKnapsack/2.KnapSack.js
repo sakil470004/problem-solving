@@ -1,0 +1,25 @@
+// Question
+// Question 1: 01 Knapsack: You are provided with a set of N items, each with a specified weight and value. Your objective is to pack these items into a backpack with a weight limit of W, maximizing the total value of items in the backpack. Specifically, you have two arrays: val[0..N-1], representing the values of the items, and wt[0..N-1], indicating their weights. Additionally, you have a weight limit W for the backpack. The challenge is to determine the most valuable combination of items where the total weight does not exceed W. Note that each item is unique and indivisible, meaning it must be either taken as a whole or left entirely.
+
+// get link from leetcode
+// https://leetcode.com/problems/01-knapsack/
+
+function KnapSack(W, wt, val, n) {
+  function helper(index, remWeight) {
+    //? base case
+    if (index >= n || remWeight === 0) {
+      return 0;
+    }
+
+    //? recursive case
+    // exclude the current item
+    let exclude = helper(index + 1, remWeight);
+    // include the current item
+    let include = 0;
+    if (wt[index] <= remWeight) {
+      include = val[index] + helper(index + 1, remWeight - wt[index]);
+    }
+    return Math.max(include, exclude);
+  }
+  return helper(0, W);
+}
