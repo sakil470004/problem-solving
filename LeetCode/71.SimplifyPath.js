@@ -14,8 +14,6 @@
 // It should exclude any single or double periods used to denote current or parent directories.
 // Return the new path.
 
- 
-
 // Example 1:
 
 // Input: path = "/home/"
@@ -65,3 +63,28 @@
 // Explanation:
 
 // "..." is a valid name for a directory in this problem.
+
+var simplifyPath = function(path) {
+    let stack = [];
+    let components = path.split('/');
+    
+    for (let i = 0; i < components.length; i++) {
+        let part = components[i];
+        
+        if (part === '' || part === '.') {
+            continue; // Ignore empty parts and current directory
+        }
+        
+        if (part === '..') {
+            if (stack.length > 0) {
+                stack.pop(); // Go up one directory
+            }
+        } else {
+            stack.push(part); // Push valid directory names onto the stack
+        }
+    }
+    
+    return '/' + stack.join('/');
+};
+
+console.log(simplifyPath("/home/"));
