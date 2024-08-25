@@ -24,9 +24,31 @@ function KnapSack1(W, wt, val, n) {
   return helper(0, W);
 }
 
-
 //? time complexity is O(2^n) and space complexity is O(n)
 //? optimized approach// memoization | top-down approach
+//? time complexity is O(n*W) and space complexity is O(n*W)
 function KnapSack2(W, wt, val, n) {
-
+  // n rows and w+1 columns//fill with -1
+  const dp = Array.from({ length: n }, () => Array(W + 1).fill(-1));
+  function helper(index, remWeight) {
+    //? base case
+    if (index >= n || remWeight === 0) {
+      return 0;
+    }
+    // if it not in dp then calculate and store it in dp
+    if (dp[index][remWeight] !== -1) {
+      return dp[index][remWeight];
+    }
+    //? recursive case
+    // exclude the current item
+    let exclude = helper(index + 1, remWeight);
+    // include the current item
+    let include = 0;
+    if (wt[index] <= remWeight) {
+      include = val[index] + helper(index + 1, remWeight - wt[index]);
+    }
+    dp[index][remWeight] = Math.max(include, exclude);
+    return dp[index][remWeight];
+  }
+  return helper(0, W);
 }
