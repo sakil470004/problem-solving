@@ -17,7 +17,7 @@ var combine = function (n, k) {
     for (let i = start; i <= n - lengthNeed + 1; i++) {
       subArray.push(i);
       helper(i + 1, subArray);
-      subArray.pop();//backtracking to previous state
+      subArray.pop();//backtracking to previous state so that we can add next element
       // [1] [2] [3] [4]
       // [1,2]...
       // [1,3]..
