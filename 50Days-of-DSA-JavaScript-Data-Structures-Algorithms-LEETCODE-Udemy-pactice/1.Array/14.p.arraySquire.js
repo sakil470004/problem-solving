@@ -1,4 +1,4 @@
-// * Given a sorted array, create a new array containing squares of all the number of the input array in the sorted order.
+//? * Given a sorted array, create a new array containing squares of all the number of the input array in the sorted order.
 const arraySquire = (arr) => {
   const newArray = new Array(arr.length).fill(0);
   let leftPointer = 0;
