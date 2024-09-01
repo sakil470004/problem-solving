@@ -54,6 +54,7 @@ const findTheWinner3 = (n, k) => {
 
   return survivor + 1;
 };
+
 const result = findTheWinner(6, 2);
 const result2 = findTheWinner2(6, 2);
 const result3 = findTheWinner2(6, 2);
