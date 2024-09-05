@@ -5,18 +5,19 @@ const arraySquire = (arr) => {
   if (arr.length === 0) {
     return squires;
   }
-  let isNegative = false;
+  // let isNegative = false;
   for (let i = 0; i < arr.length; i++) {
-    if (arr[i] < 0) {
-      isNegative = true;
-    }
+    // if (arr[i] < 0) {
+    //   isNegative = true;
+    // }
     squires.push(arr[i] * arr[i]);
   }
-  if (!isNegative) {
-    return squires;
-  }
+  // if (!isNegative) {
+  //   return squires;
+  // }
   return squires.sort((a, b) => a - b);
 };
+// time complexity: O(nlogn)
 // pointer method
 const arraySquire2 = (arr) => {
   const resultArray = new Array(arr.length).fill(0);
