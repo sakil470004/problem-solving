@@ -27,20 +27,28 @@
  
 
 // Follow up: Could you write a solution that works in logarithmic time complexity?
-
-var trailingZeroes = function(n) {
-    let factorial=1;
-    for(let i =n;i>=1;i--){
-        factorial=i*factorial;
+// ?my wrong answer
+// var trailingZeroes = function(n) {
+//     let factorial=1;
+//     for(let i =n;i>=1;i--){
+//         factorial=i*factorial;
         
-    }
-    // console.log(`Factorial is `,factorial);
-    let count=0;
-    while(factorial%10===0){
-        count++;
-        factorial=factorial/10;
+//     }
+//     console.log(`Factorial is `,factorial);
+//     let count=0;
+//     while(factorial%10===0){
+//         count++;
+//         factorial=factorial/10;
+//     }
+//     return count;
+// };
+var trailingZeroes = function(n) {
+    let count = 0;
+    while (n >= 5) {
+        n = Math.floor(n / 5);
+        count += n;
     }
     return count;
 };
 
-console.log(`Trailing Zeroes are `,trailingZeroes(5));
+console.log(`Trailing Zeroes are `,trailingZeroes(30));
