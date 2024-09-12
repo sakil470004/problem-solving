@@ -31,7 +31,7 @@ var findTheWinner = function (n, k) {
   }
   return helper(array, 0);
 };
-// ! Approach 2 
+// ! Approach 2
 // ! if we know the solution of n-1 then we can solve n
 const findTheWinner2 = (n, k) => {
   function josephus(n) {
@@ -55,9 +55,31 @@ const findTheWinner3 = (n, k) => {
   return survivor + 1;
 };
 
-const result = findTheWinner(6, 2);
-const result2 = findTheWinner2(6, 2);
-const result3 = findTheWinner2(6, 2);
-console.log(result);
-console.log(result2);
-console.log(result3);
+// const result = findTheWinner(6, 2);
+// const result2 = findTheWinner2(6, 2);
+// const result3 = findTheWinner2(6, 2);
+// console.log(result);
+// console.log(result2);
+// console.log(result3);
+
+var findTheWinner5 = function (n, k) {
+  //Write code here
+  const newArray = Array.from({ length: n }, (_, i) => i + 1);
+  console.log(newArray);
+  const helper = (newArray, k, startIndex) => {
+    const len = newArray.length;
+    /*base case*/
+    if (len === 1) {
+      return;
+    }
+    // recursive case
+    // slice the Array
+    const start=(startIndex+len+k-1)%len;
+     newArray.splice(start % len, 1);
+    console.log(newArray);
+    helper(newArray, k, start);
+  };
+  helper(newArray, k, 0);
+  return newArray[0];
+};
+console.log(findTheWinner5(5, 2)); //3
