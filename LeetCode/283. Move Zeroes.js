@@ -24,19 +24,18 @@
 // Follow up: Could you minimize the total number of operations done?
 
 var moveZeroes = function (nums) {
-  let first = 0;
-  let last = first + 1;
-  while (first < nums.length - 1) {
-    if (nums[first] === 0 && nums[last] !== 0) {
-      // swap them with next element
-      [nums[first], nums[last]] = [nums[last], nums[first]];
-      first = last;
-      last++;
-    } else if (nums[first] !== 0) {
-      first++;
-    } else {
-      last++;
+  let count = 0;
+  const len = nums.length;
+  // move all non-zero elements to the front
+  for (let i = 0; i < len; i++) {
+    if (nums[i] !== 0) {
+      nums[count] = nums[i];
+      count++;
     }
+  }
+  // fill the remaining elements with 0
+  for (let i = count; i < len; i++) {
+    nums[i] = 0;
   }
   return nums;
 };
