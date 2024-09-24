@@ -34,7 +34,7 @@ var reverseList = function(head) {
     let prev=null;//1st node head
     let current=head;
     while(current!==null){
-        // swap pointers
+        // swap pointers so that the current node points to the previous node
         const nextNode=current.next
         current.next=prev
         prev=current
@@ -42,3 +42,17 @@ var reverseList = function(head) {
     }
     return prev
 };
+var reverseList1=function(head){
+    // previous node is null it work like current node and we will return it
+    let prev=null;
+    let current=head;
+    while(current!==null){
+        let nextNode=current.next
+        // current.next will be previous node
+        current.next=prev
+        prev=current
+        // current will be nextNode=> we store it current.next value;
+        current=nextNode
+    }
+    return prev
+}
