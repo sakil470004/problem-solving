@@ -4,7 +4,7 @@
 //? clarifying question.
 // ? What if nums is empty ?=> should I return an empty array
 
-var permute = (numbers) => {
+var permute1 = (numbers) => {
   let results = [];
   let n = numbers.length;
   function helper(i) {
@@ -26,6 +26,33 @@ var permute = (numbers) => {
   helper(0);
   return results;
 };
+// mynul code 
+var permute = function(nums) {
+  const results=[];
+  const n=nums.length;
+  const helper=(index)=>{
+      // base condition
+      if(index===n-1){
+          results.push([...nums]);
+      return;
+      }
+      
+      // recursive ``case``
+      
+      for(let i=index;i<n;i++){
+          [nums[i],nums[index]]=[nums[index],nums[i]];
+          helper(index+1);
+          // revert changes
+          [nums[i],nums[index]]=[nums[index],nums[i]];
+
+      }
+      
+  }
+  helper(0);
+  
+  return results;
+};
+
 
 const result = permute([1, 2, 3]);
 console.log(result);
