@@ -50,6 +50,8 @@ var reverseList1=function(head){
         let nextNode=current.next
         // current.next will be previous node
         current.next=prev
+        
+        // update 
         prev=current
         // current will be nextNode=> we store it current.next value;
         current=nextNode
