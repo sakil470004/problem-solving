@@ -29,7 +29,8 @@ var combine = function (n, k) {
             results.push(subset.slice());
             return;
         }
-        for(let i=start;i<=n;i++){
+        const needed = k - subset.length;
+        for(let i=start;i<=n-(needed-1);i++){
             subset.push(i);
             helper(i+1, subset);
             subset.pop();
@@ -39,4 +40,4 @@ var combine = function (n, k) {
     return results;
 };
 
-console.log(combine(4, 3)) // [[1,2],[1,3],[1,4],[2,3],[2,4],[3,4]]
+console.log(combine(4, 2)) // [[1,2],[1,3],[1,4],[2,3],[2,4],[3,4]]
