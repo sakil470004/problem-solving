@@ -29,7 +29,7 @@ var combinationSum = function (candidates, target) {
             return;
         }
 
-        for (let j = index; j < len; j++) {
+        for (let j = index; j < len;  j++) {
             // current number again
             subset.push(candidates[j]);
             helper(j, currentSum + candidates[j], subset)
