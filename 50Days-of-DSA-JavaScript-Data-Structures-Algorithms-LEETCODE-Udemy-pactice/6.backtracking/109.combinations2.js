@@ -25,20 +25,22 @@ var combinationSum2 = function (candidates, target) {
             results.push([...subset]);
             return;
         }
-        if (currentSum > target || index >= len - 1) {
+        if (currentSum > target || index >= candidates.length) {
             // if current is bigger there is no need to go in this branch
             return;
         }
 
         let hash = {};
-        for (let j = index; j < len; j++) {
+        for (let j = index; j < candidates.length; j++) {
             // current number again
-            if (hash[candidates[j]]) continue;
-            hash[candidates[j]] = true
-            subset.push(candidates[j]);
-            helper(j + 1, currentSum + candidates[j], subset)
-            // include new number
-            subset.pop();
+            if (!hash[candidates[j]]) {
+
+                hash[candidates[j]] = true
+                subset.push(candidates[j]);
+                helper(j + 1, currentSum + candidates[j], subset)
+                // include new number
+                subset.pop();
+            }
         }
 
     }
