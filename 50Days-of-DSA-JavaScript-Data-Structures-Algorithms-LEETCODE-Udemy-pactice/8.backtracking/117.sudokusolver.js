@@ -70,9 +70,47 @@
 
 // ]
 
-var solveSudoku = function(board) {
-    //The function modifies the board in place to present the solution. Hence there is no need to return the board
-    
+var solveSudoku = function (board) {
+    // the function modifies the board in place so we can return nothing
+    function isValidMove(board, row, col, num) {
+        // row check column check
+        // 1st column check || row check if either one is === num then return false
+        for (let x = 0; x < 9; x++) {
+            if (board[x][col] === num || board[row][x] === num) {
+                return false;
+            }
+            // 3x3 box check
+            let r = 3 * Math.floor(row / 3) + Math.floor(x / 3);
+            let c = 3 * Math.floor(col / 3) + (x % 3);
+            if (board[r][c] === num) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    // helper function to solve the board
+    function helper(board) {
+        for (let row = 0; row < 9; row++) {
+            for (let col = 0; col < 9; col++) {
+                if (board[row][col] === ".") {//identify the empty cell
+                    for (let num = 1; num <= 9; num++) {//try all the numbers from 1 to 9
+                        let char = num.toString();
+                        if (isValidMove(board, row, col, char)) {
+                            board[row][col] = char;//fill the number in the board
+                            if (helper(board)) {
+                                return true;//to check if the board is solved or not
+                            }
+                            board[row][col] = ".";//backtracking
+                        }
+                    }
+                    return false;//if any number do not match for current position//it will backtrack
+                }
+            }
+        }
+        return true;
+    }
+    helper(board);
 };
 
 console.log(solveSudoku([["5", "3", ".", ".", "7", ".", ".", ".", "."], ["6", ".", ".", "1", "9", "5", ".", ".", "."], [".", "9", "8", ".", ".", ".", ".", "6", "."], ["8", ".", ".", ".", "6", ".", ".", ".", "3"], ["4", ".", ".", "8", ".", "3", ".", ".", "1"], ["7", ".", ".", ".", "2", ".", ".", ".", "6"], [".", "6", ".", ".", ".", ".", "2", "8", "."], [".", ".", ".", "4", "1", "9", ".", ".", "5"], [".", ".", ".", ".", "8", ".", ".", "7", "9"]]))
