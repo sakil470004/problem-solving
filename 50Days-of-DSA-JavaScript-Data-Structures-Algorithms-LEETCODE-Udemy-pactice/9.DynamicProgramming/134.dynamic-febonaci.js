@@ -10,3 +10,28 @@
 // Solution 2: T=O(n) , S=O(n)
 
 // Solution 3: T=O(n) , S=O(1) --- best
+
+
+// for dynamic approach we will go with solution 4 step by step
+// 1. recursion
+// 2. recursion with memoization/ top-down approach
+// 3. tabulation/ bottom-up approach
+// 4. space optimized tabulation (step 3 with space optimized)
+// fibonacci with memoization
+
+
+var fib1 = function (n) {
+    //Write code here
+
+    let memo = {};
+    const helper = (n) => {
+        if (n in memo) return memo[n];
+        if (n <= 1) return n;
+        memo[n] = helper(n - 1) + helper(n - 2);
+        return memo[n];
+    }
+    return helper(n);
+
+};
+
+console.log(fib(41)); //0
