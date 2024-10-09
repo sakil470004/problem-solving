@@ -33,5 +33,17 @@ var fib1 = function (n) {
     return helper(n);
 
 };
+// tabulation
+var fib2 = function (n) {
+    //Write code here
+    let dp = new Array(n + 1).fill(0);
+    dp[1] = 1;
+    for (let i = 2; i <= n; i++) {
+        dp[i] = dp[i - 1] + dp[i - 2];
+    }
+    return dp[n];
 
-console.log(fib(41)); //0
+};
+
+
+console.log(fib2(41)); //0
