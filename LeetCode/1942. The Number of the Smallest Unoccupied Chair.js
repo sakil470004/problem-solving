@@ -37,3 +37,53 @@
 // - Friend 2 leaves at time 6 and chair 1 becomes empty.
 // - Friend 0 leaves at time 10 and chair 2 becomes empty.
 // Since friend 0 sat on chair 2, we return 2.
+
+var smallestChair = function(times, targetFriend) {
+    let currentOccupiedTill = -1;
+    let minHeap = new MinPriorityQueue({ priority: (person) => person.chair });
+    
+    let chairsAssigned = new Map();
+    
+    let timeSplitArr = [];
+    
+    for(let timeInd = 0; timeInd < times.length; timeInd++) {
+        timeSplitArr.push({ time: times[timeInd][0], type: 'arrival', person: timeInd });
+        timeSplitArr.push({ time: times[timeInd][1], type: 'dept', person: timeInd });
+    }
+    
+    timeSplitArr.sort((a, b) => {
+        if(a.time !== b.time) {
+            return a.time - b.time;
+        } else if(a.type === 'dept') {
+            return -1;
+        } else {
+            return 1;
+        }
+    });
+    
+    for(let friend of timeSplitArr) {
+        
+        if(friend.type === 'arrival') {
+            if(minHeap.size() === 0) {
+                currentOccupiedTill++;
+                
+                if(friend.person === targetFriend) return currentOccupiedTill;
+                
+                chairsAssigned.set(friend.person, currentOccupiedTill);
+            } else {
+                let chair = minHeap.dequeue().element.chair;
+                
+                if(friend.person === targetFriend) return chair;
+                
+                chairsAssigned.set(friend.person, chair);
+            }
+        } else {
+            let chair = chairsAssigned.get(friend.person);
+            
+            chairsAssigned.delete(friend.person);
+            
+            minHeap.enqueue({ chair: chair });
+        }
+    }
+    
+};

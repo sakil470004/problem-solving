@@ -19,23 +19,52 @@
 // Output: 7
 // Explanation: The maximum width ramp is achieved at (i, j) = (2, 9): nums[2] = 1 and nums[9] = 1.
  
-var maxWidthRamp = function(A) {
-    let stack = [];
-    let maxWidth = 0;
-
-    // Step 1: Build a stack with decreasing values of A
-    for (let i = 0; i < A.length; i++) {
-        if (stack.length === 0 || A[stack[stack.length - 1]] > A[i]) {
-            stack.push(i);
+var smallestChair = function(times, targetFriend) {
+    let currentOccupiedTill = -1;
+    let minHeap = new MinPriorityQueue({ priority: (person) => person.chair });
+    
+    let chairsAssigned = new Map();
+    
+    let timeSplitArr = [];
+    
+    for(let timeInd = 0; timeInd < times.length; timeInd++) {
+        timeSplitArr.push({ time: times[timeInd][0], type: 'arrival', person: timeInd });
+        timeSplitArr.push({ time: times[timeInd][1], type: 'dept', person: timeInd });
+    }
+    
+    timeSplitArr.sort((a, b) => {
+        if(a.time !== b.time) {
+            return a.time - b.time;
+        } else if(a.type === 'dept') {
+            return -1;
+        } else {
+            return 1;
+        }
+    });
+    
+    for(let friend of timeSplitArr) {
+        
+        if(friend.type === 'arrival') {
+            if(minHeap.size() === 0) {
+                currentOccupiedTill++;
+                
+                if(friend.person === targetFriend) return currentOccupiedTill;
+                
+                chairsAssigned.set(friend.person, currentOccupiedTill);
+            } else {
+                let chair = minHeap.dequeue().element.chair;
+                
+                if(friend.person === targetFriend) return chair;
+                
+                chairsAssigned.set(friend.person, chair);
+            }
+        } else {
+            let chair = chairsAssigned.get(friend.person);
+            
+            chairsAssigned.delete(friend.person);
+            
+            minHeap.enqueue({ chair: chair });
         }
     }
-
-    // Step 2: Traverse from the end and calculate the maximum ramp width
-    for (let j = A.length - 1; j >= 0; j--) {
-        while (stack.length > 0 && A[stack[stack.length - 1]] <= A[j]) {
-            maxWidth = Math.max(maxWidth, j - stack.pop());
-        }
-    }
-
-    return maxWidth;
+    
 };
