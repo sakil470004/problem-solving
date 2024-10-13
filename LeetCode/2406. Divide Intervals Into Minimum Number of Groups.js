@@ -27,7 +27,7 @@
 // Input: intervals = [[1,3],[5,6],[8,10],[11,13]]
 // Output: 1
 // Explanation: None of the intervals overlap, so we can put all of them in one group.
-
+// I tried but got problem in understanding the problem. I will try again later.
 var minGroups = function(intervals) {
     const hash = {};
     
@@ -57,5 +57,6 @@ var minGroups = function(intervals) {
     
     return result;  // The result is the minimum number of groups needed
 };
+
 
 console.log(minGroups([[5,10],[6,8],[1,5],[2,3],[1,10]]))
