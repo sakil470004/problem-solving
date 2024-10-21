@@ -10,3 +10,52 @@
 // Explanation: Choose the last 2 items that weighs 2 and 5 units respectively and hold values 3 and 9 that add up to 12. 
 
 
+function knapSack(W, wt, val, n) {
+    // for time need for this problem is 2^n
+    console.time('knapSack');
+    //Write Code here
+    const helper = (index, remWeight) => {
+        //base condition 
+        if (index >= n || remWeight === 0) {
+            return 0;
+        }
+
+        let exclude = helper(index + 1, remWeight);
+        let include = 0;
+        if (wt[index] <= remWeight) {
+            include = val[index] + helper(index + 1, remWeight - wt[index]);
+        }
+        return Math.max(include, exclude);
+
+    }
+    console.timeEnd('knapSack');
+    return helper(0, W);
+}
+
+function knapSack2(W, wt, val, n) {
+    console.time('knapSack2');
+    const dp = Array.from({ length: n }, () => Array(W + 1).fill(-1));
+
+    const helper = (index, remWeight) => {
+        if (index >= n || remWeight === 0) {
+            return 0;
+        }
+        if (dp[index][remWeight] !== -1) {
+            return dp[index][remWeight];
+        }
+        let exclude = helper(index + 1, remWeight);
+        let include = 0;
+        if (wt[index] <= remWeight) {
+            include = val[index] + helper(index + 1, remWeight - wt[index]);
+        }
+        dp[index][remWeight] = Math.max(include, exclude);
+        return dp[index][remWeight];
+    }
+    console.timeEnd('knapSack2');
+    return helper(0, W);
+}
+
+
+
+console.log(knapSack(8, [8, 2, 5], [2, 3, 9], 3)); //12
+console.log(knapSack2(8, [8, 2, 5], [2, 3, 9], 3)); //12
