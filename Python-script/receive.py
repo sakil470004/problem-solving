@@ -52,7 +52,7 @@ def receive_file():
         
         while True:
             try:
-                client_socket, address = s.accept()
+                client_socket, address = s.accept() 
                 print(f"Connected by: {address}")
                 
                 received = client_socket.recv(BUFFER_SIZE).decode()
