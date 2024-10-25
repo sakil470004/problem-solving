@@ -31,7 +31,7 @@ function knapSack(W, wt, val, n) {
     console.timeEnd('knapSack');
     return helper(0, W);
 }
-
+// memorization on my own
 function knapSack2(W, wt, val, n) {
     console.time('knapSack2');
     const dp = Array.from({ length: n }, () => Array(W + 1).fill(-1));
@@ -55,7 +55,73 @@ function knapSack2(W, wt, val, n) {
     return helper(0, W);
 }
 
+// memoization on with instructor
+function knapSack3(W, wt, val, n) {
+    // n rows w+1 columns
+    const dp = Array.from({ length: n }, () => Array(W + 1).fill(-1));
+    //Write Code here
+    const helper = (index, remWeight) => {
+        //base condition 
+        if (index >= n || remWeight === 0) {
+            return 0;
+        }
 
+        if (dp[index][remWeight] !== -1) {
+            return dp[index][remWeight];
+        }
 
+        let exclude = helper(index + 1, remWeight);
+        let include = 0;
+        if (wt[index] <= remWeight) {
+            include = val[index] + helper(index + 1, remWeight - wt[index]);
+        }
+        dp[index][remWeight] = Math.max(include, exclude);
+        return dp[index][remWeight];
+
+    }
+
+    return helper(0, W);
+}
+// tabulation
+function knapSack4(W, wt, val, n) {
+    // n+1 rows w+1 columns
+    const dp = Array.from({ length: n + 1 }, () => Array(W + 1).fill(0));
+
+    for (let i = 1; i <= n; i++) {
+        for (let j = 1; j <= W; j++) {
+
+            const exclude = dp[i - 1][j];
+            const include = 0;
+
+            if (wt[i - 1] <= j) {
+                include = val[i - 1] + dp[i - 1][j - wt[i - 1]];
+            }
+            dp[i][j] = Math.max(include, exclude);
+        }
+    }
+    return dp[n][W];
+}
+
+function knapSack5(W, wt, val, n) {
+    // n+1 rows w+1 columns
+    let prev = Array(W + 1).fill(0);
+    let curr = Array(W + 1).fill(0);
+
+    for (let i = 1; i <= n; i++) {
+        for (let j = 1; j <= W; j++) {
+
+            const exclude = prev[j];
+            const include = 0;
+
+            if (wt[i - 1] <= j) {
+                include = val[i - 1] + prev[j - wt[i - 1]];
+            }
+            curr[j] = Math.max(include, exclude);
+        }
+        prev = curr.slice();//copy the curr to prev
+    }
+    return curr[W];
+}
 console.log(knapSack(8, [8, 2, 5], [2, 3, 9], 3)); //12
 console.log(knapSack2(8, [8, 2, 5], [2, 3, 9], 3)); //12
+console.log(knapSack3(8, [8, 2, 5], [2, 3, 9], 3)); //12
