@@ -7,7 +7,7 @@
 // The format of a path is one or more concatenated strings of the form: '/' followed by one or more lowercase English letters.
 
 // For example, "/leetcode" and "/leetcode/problems" are valid paths while an empty string and "/" are not.
- 
+
 
 // Example 1:
 
@@ -24,7 +24,7 @@
 // Input: folder = ["/a/b/c","/a/b/ca","/a/b/d"]
 // Output: ["/a/b/c","/a/b/ca","/a/b/d"]
 
-var removeSubfolders = function(folder) {
+var removeSubfolders = function (folder) {
     folder.sort();
     let result = [];
     result.push(folder[0]);
@@ -35,7 +35,20 @@ var removeSubfolders = function(folder) {
         }
     }
     return result;
-    
+
 };
 
-console.log(removeSubfolders(["/a","/a/b","/c/d","/c/d/e","/c/f"])); // ["/a","/c/d","/c/f"]
+var removeSubFolders2 = function (folder) {
+    folder.sort();
+    let result
+    result.push(folder[0]);
+    for (let i = 1; i < folder.length; i++) {
+        let lastFolder = result[result.length - 1];
+        if (!folder[i].startsWith(lastFolder + '/')) {
+            result.push(folder[i]);
+        }
+    }
+    return result;
+}
+
+console.log(removeSubfolders(["/a", "/a/b", "/c/d", "/c/d/e", "/c/f"])); // ["/a","/c/d","/c/f"]
