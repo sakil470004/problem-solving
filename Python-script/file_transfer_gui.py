@@ -1,16 +1,14 @@
-# file_transfer_gui.py
 import tkinter as tk
-from tkinter import ttk, messagebox
+from tkinter import ttk, messagebox, filedialog
 import threading
-from file_transfer import FileTransfer  # Your merged file transfer class
-from tkinter import filedialog
+from file_transfer import FileTransfer
+
 class FileTransferGUI:
     def __init__(self, root):
         self.root = root
         self.root.title("File Transfer System")
         self.root.geometry("600x400")
         
-        # Create tabs
         self.tab_control = ttk.Notebook(root)
         
         # Receive tab
@@ -31,18 +29,15 @@ class FileTransferGUI:
         self.status_bar = ttk.Label(root, textvariable=self.status_var, relief=tk.SUNKEN)
         self.status_bar.pack(side=tk.BOTTOM, fill=tk.X)
         
-        # Initialize file transfer
         self.transfer = FileTransfer()
 
     def setup_receive_tab(self):
-        # Status frame
         status_frame = ttk.LabelFrame(self.receive_tab, text="Receiver Status", padding=10)
         status_frame.pack(fill=tk.X, padx=10, pady=5)
         
         self.receive_status = ttk.Label(status_frame, text="Not Listening")
         self.receive_status.pack()
         
-        # Control frame
         control_frame = ttk.Frame(self.receive_tab)
         control_frame.pack(pady=10)
         
@@ -55,15 +50,12 @@ class FileTransferGUI:
         self.stop_btn.pack(side=tk.LEFT, padx=5)
 
     def setup_send_tab(self):
-        # Scan frame
         scan_frame = ttk.LabelFrame(self.send_tab, text="Available Receivers", padding=10)
         scan_frame.pack(fill=tk.X, padx=10, pady=5)
         
-        # Receivers listbox
         self.receivers_listbox = tk.Listbox(scan_frame, height=5)
         self.receivers_listbox.pack(fill=tk.X)
         
-        # Button frame
         btn_frame = ttk.Frame(self.send_tab)
         btn_frame.pack(pady=10)
         
@@ -78,7 +70,6 @@ class FileTransferGUI:
     def start_receiving(self):
         self.receive_status.config(text="Listening...")
         self.receive_btn.config(state=tk.DISABLED)
-        # Start receive in separate thread
         thread = threading.Thread(target=self.receive_thread)
         thread.daemon = True
         thread.start()
@@ -96,7 +87,6 @@ class FileTransferGUI:
         self.receive_btn.config(state=tk.NORMAL)
 
     def stop_receiving(self):
-        # Add stop logic here
         self.receive_status.config(text="Stopped")
         self.receive_btn.config(state=tk.NORMAL)
 
@@ -122,15 +112,11 @@ class FileTransferGUI:
             self.receivers_listbox.insert(tk.END, ip)
 
     def send_file(self):
-        from tkinter import filedialog
-        
-        # Check receiver selection
         selected = self.receivers_listbox.curselection()
         if not selected:
             messagebox.showwarning("Warning", "Please select a receiver")
             return
         
-        # Get file to send
         filename = filedialog.askopenfilename(
             title="Select file to send",
             filetypes=(
@@ -149,7 +135,7 @@ class FileTransferGUI:
         
         def send_thread():
             try:
-                self.transfer.send_file(filename, receiver)  # Adjust parameters as needed
+                self.transfer.send_file(filename, receiver)  # Now passing both arguments
                 self.root.after(0, lambda: self.status_var.set("File sent successfully!"))
                 self.root.after(0, lambda: messagebox.showinfo("Success", "File sent successfully!"))
             except Exception as error:
@@ -162,6 +148,7 @@ class FileTransferGUI:
         thread = threading.Thread(target=send_thread)
         thread.daemon = True
         thread.start()
+
 if __name__ == "__main__":
     root = tk.Tk()
     app = FileTransferGUI(root)
