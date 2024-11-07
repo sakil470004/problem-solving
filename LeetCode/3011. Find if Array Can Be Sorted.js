@@ -54,6 +54,7 @@ var canSortArray = function(nums) {
     
     const n = nums.length;
     
+    
     // Store bit counts for each number
     const bitCounts = nums.map(num => countBits(num));
     
