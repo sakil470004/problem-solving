@@ -134,5 +134,5 @@ var minDistance = function (word1, word2) {
         }
         prev = current.slice();
     }
-    return current[m];
+    return prev[m];
 }
