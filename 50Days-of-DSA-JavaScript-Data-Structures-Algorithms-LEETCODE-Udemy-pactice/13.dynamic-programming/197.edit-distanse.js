@@ -113,25 +113,26 @@ var minDistance = function (word1, word2) {
 var minDistance = function (word1, word2) {
     let n = word1.length;
     let m = word2.length;
-    let dp = Array.from({ length: n + 1 }, () => Array(m + 1).fill(0));
-    // init with col and row values
-    for (let i = 0; i <= n; i++) {
-        dp[i][0] = i;
-    }
+    let current = Array(m + 1).fill(0);
+    let prev = Array(m + 1).fill(0);
+    // init with col 
+    
     for (let j = 0; j <= m; j++) {
-        dp[0][j] = j;
+        prev[j] = j;
     }
     for(let i =1 ;i<=n;i++){
+        curr[0]=i;//init with row values
         for(let j=1;j<=m;j++){
             if(word1[i-1]===word2[j-1]){
-                dp[i][j]=dp[i-1][j-1];
+                current[j]=prev[j-1];
             }else{
-                let insert = 1+dp[i][j-1];
-                let deleteOp = 1+dp[i-1][j];
-                let replace = 1+dp[i-1][j-1];
-                dp[i][j]=Math.min(insert,deleteOp,replace);
+                let insert = 1+current[j-1];
+                let deleteOp = 1+prev[j];
+                let replace = 1+prev[j-1];
+                current=Math.min(insert,deleteOp,replace);
             }
         }
+        prev = current.slice();
     }
-    return dp[n][m];
+    return current[m];
 }
