@@ -1,0 +1,20 @@
+a=1
+b=True
+c="Hello"
+d=2.5
+e=None
+n=complex(2,3)
+print(a,b,c,d,e)
+print(n)
+# type of all 
+print(type(a))
+print(type(b))
+print(type(c))
+print(type(d))
+print(type(e))
+print(type(n))
+list1=[1,2,3,4,5]
+print(list1)
+print(type(list1))
+tuple1=(1,2,3,4,5)
+dictionsary1={"name":"Harry","age":25}
