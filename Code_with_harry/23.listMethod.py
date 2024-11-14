@@ -23,3 +23,17 @@ list.sort(reverse=True)
 print(list)
 hunderd=list.index(100)
 print(hunderd)
+print(list.count(100))
+# shallow copy
+# newList=list
+newList=list.copy()
+newList.append("x")
+print(list,newList)
+# extend
+m=[1,2,3,4,5]
+newList.extend(m)
+print(newList)
+# concaticate
+k=m+list
+n=list+m
+print(k,n)
