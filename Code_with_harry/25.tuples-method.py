@@ -1,0 +1,8 @@
+countries=("India","USA","UK","Japan","China","Russia","Pakistan","Sri Lanka","Bangladesh","Nepal")
+temp = list(countries)
+print(countries)
+print(temp)
+temp.append("Bhutan")
+temp.pop(3)
+countries=tuple(temp)
+print(countries)
