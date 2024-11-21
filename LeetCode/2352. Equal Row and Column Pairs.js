@@ -41,7 +41,7 @@ var equalPairs = function(grid) {
             // Get current row and column
             let currentRow = grid[row];
             let currentCol = getColumn(col);
-            
+            // console.log(currentRow,currentCol);
             // Compare row and column as strings
             if(currentRow.join(',') === currentCol.join(',')) {
                 count++;
