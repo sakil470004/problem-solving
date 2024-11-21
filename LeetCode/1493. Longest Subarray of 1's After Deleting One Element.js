@@ -40,4 +40,5 @@ var longestSubarray = function(nums) {
     return result===nums.length?result-1:result;
     
 };
+
 console.log(longestSubarray([1,1,0,1]));//3
