@@ -13,3 +13,11 @@ print(disc.get("name2","Not Found")) # it will return the value of the key if th
 # print(disc["name2"]) # it will give error if the key is not present in the dictionary
 print(disc.keys())
 print(disc.values())
+
+for key in disc.keys():
+    print(disc[key])
+for value in disc.values():
+    print(value)
+
+for key,value in disc.items():
+    print(f"{key} is {value}")
