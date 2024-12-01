@@ -31,10 +31,10 @@
  * @return {TreeNode}
  */
 var searchBST = function(root, val) {
-    if(root===val) return root
-    if(root===null) return null
-    if(root.left) searchBST(root.left,val)
-    if(root.right) searchBST(root.right,val)
-
+    if(root === null) return null;
+    if(root.val === val) return root;
+    
+    if(val < root.val) return searchBST(root.left, val);
+    return searchBST(root.right, val);
 };
 
