@@ -1,5 +1,5 @@
 
-// Coding Exercise: LIS
+//Udemy=>Jackson Kailath Teacher's course=> 50days leetcode=> Coding Exercise: LIS => Longest Increasing Subsequence
 // Given an integer array nums, return the length of the longest strictly increasing
 
 // subsequence.
@@ -13,7 +13,7 @@
 // Explanation: The longest increasing subsequence is [2,3,7,500], 
 // therefore the length is 4.
 
-// mynul solution
+// mynul solution// is not working
 var lengthOfLIS = function(nums) {
     //Write code here 
     let result=0;
