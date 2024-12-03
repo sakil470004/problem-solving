@@ -95,6 +95,7 @@ class LinkedList {
       current.next = current.next.next;
     }
   }
+ 
   print() {
     let current = this.head;
     while (current) {
