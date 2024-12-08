@@ -1,21 +1,26 @@
-var rob = function(nums) {
-    let n=nums.length;
-    if(n==0) return 0;
-    if(n==1) return nums[0];
-    if(n==2) return Math.max(nums[0],nums[1]);
-    let result=0;
-    let memo={};
-    let helper=(index,sum)=>{
-        if(index>=n){
-            result=Math.max(result,sum);
-            return;
-        }
-        if(memo[index]) return;
-        memo[index]=true;
-        helper(index+1,sum);
-        helper(index+2,sum+nums[index]);
+var StockSpanner = function() {
+    // Stack to store [price, span] pairs
+    this.stack = [];
+};
 
+/** 
+ * @param {number} price
+ * @return {number}
+ */
+StockSpanner.prototype.next = function(price) {
+    // Initialize span as 1 (current day)
+    let span = 1;
+    
+    // While stack is not empty and current price is greater 
+    // or equal to the top of the stack
+    while (this.stack.length > 0 && price >= this.stack[this.stack.length - 1][0]) {
+        // Add the span of previous days
+        span += this.stack.pop()[1];
     }
-    helper(0,0);
-    return result;
+    
+    // Push current price and its span to the stack
+    this.stack.push([price, span]);
+    
+    // Return the span
+    return span;
 };
