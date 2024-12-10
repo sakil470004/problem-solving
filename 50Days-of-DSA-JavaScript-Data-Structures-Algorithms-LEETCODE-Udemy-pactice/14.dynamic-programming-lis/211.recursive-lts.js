@@ -39,7 +39,7 @@ var lengthOfLIS = function (nums) {
     let n = nums.length;
     let helper = (curr, prev) => {
         if(curr >= n) return 0;
-        // recursive case
+        // recursive case  
         let exclude = helper(curr + 1, prev);
 
         let include = 0;
