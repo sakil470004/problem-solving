@@ -38,7 +38,7 @@ var longestCommonSubsequence = function(text1, text2) {
     }
     return helper(0,0);
 }
-// its a dynamic programming problem
+// its a dynamic programming problem// solve after 1st recursive falied
 var longestCommonSubsequence = function(text1, text2) {
     const n = text1.length;
     const m = text2.length;
