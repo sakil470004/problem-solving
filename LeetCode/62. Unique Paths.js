@@ -21,6 +21,7 @@
 // 2. Down -> Down -> Right
 // 3. Down -> Right -> Down
 // let assume i = row, j = column
+// recursive solution by mynul
 var uniquePaths = function (m, n) {
     const helper = (i, j) => {
         if (i === m - 1 && j === n - 1) return 1;
@@ -30,6 +31,7 @@ var uniquePaths = function (m, n) {
     return helper(0, 0);
 
 };
+// dp solution with help
 var uniquePaths = function (m, n) {
     let dp = Array(m).fill(0).map(() => Array(n).fill(0));
     for (let i = 0; i < m; i++) {
