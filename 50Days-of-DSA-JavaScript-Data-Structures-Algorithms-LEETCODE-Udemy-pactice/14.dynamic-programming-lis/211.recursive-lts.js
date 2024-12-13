@@ -34,7 +34,7 @@ var lengthOfLIS = function (nums) {
     return result;
 
 };
-
+// recursive solution with instructor.
 var lengthOfLIS = function (nums) {
     let n = nums.length;
     let helper = (curr, prev) => {
@@ -51,4 +51,5 @@ var lengthOfLIS = function (nums) {
     }
     return helper(0, -1);
 }
+
 console.log(lengthOfLIS([300, 9, 2, 5, 3, 7, 500, 400])); //4
