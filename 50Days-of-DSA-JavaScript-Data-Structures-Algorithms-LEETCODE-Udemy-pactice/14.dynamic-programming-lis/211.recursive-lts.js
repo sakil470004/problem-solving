@@ -38,18 +38,42 @@ var lengthOfLIS = function (nums) {
 var lengthOfLIS = function (nums) {
     let n = nums.length;
     let helper = (curr, prev) => {
-        if(curr >= n) return 0;
+        if (curr >= n) return 0;
         // recursive case  
         let exclude = helper(curr + 1, prev);
 
         let include = 0;
-        if(prev===-1 ||nums[curr] > prev) {
+        if (prev === -1 || nums[curr] > prev) {
             include = 1 + helper(curr + 1, nums[curr]);
         }
         return Math.max(include, exclude);
 
     }
     return helper(0, -1);
+}
+// recursive this memorization
+var lengthOfLIS = function (nums) {
+    let n = nums.length
+    let dp = Array.from({ length: n }, () => Array(n + 1).fill(-1))
+
+    // curr is index prev is value. don't confuse mynul
+    let helper = (curr, prev) => {
+        // base case
+        if (curr >= n) return 0;
+        // if the value is already calculated
+        if (dp[curr][prev + 1] !== -1) { return dp[curr][prev + 1]; }
+        // recursive case
+        let exclude = helper(curr + 1, prev);
+        let include = 0;
+        if (prev === -1 || nums[curr] > nums[prev]) {
+            include = 1 + helper(curr + 1, curr)
+        }
+        dp[curr][prev + 1] = Math.max(include, exclude);
+        return dp[curr][prev + 1];
+    }
+    let result= helper(0, -1)
+    // console.log(dp)
+    return result;
 }
 
 console.log(lengthOfLIS([300, 9, 2, 5, 3, 7, 500, 400])); //4
