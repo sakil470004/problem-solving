@@ -75,5 +75,21 @@ var lengthOfLIS = function (nums) {
     // console.log(dp)
     return result;
 }
+// tabulation with instructor
+var lengthOfLIS = function (nums) {
+    const n=nums.length;
+    const dp=Array.from({length:n+1},()=>Array(n+1).fill(0));
+    for(let i=n-1;i>=0;i--){
+        for(let j=i;j>=0;j--){
+            let exclude=dp[i+1][j];
+            let include=0;
+            if(j-1===-1 || nums[i]>nums[j-1]){
+                include=1+dp[i+1][i+1];
+            }
+            dp[i][j]=Math.max(include,exclude);
+        }
+    }
+    return dp[0][0];
+}
 
 console.log(lengthOfLIS([300, 9, 2, 5, 3, 7, 500, 400])); //4
