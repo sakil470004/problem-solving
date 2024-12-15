@@ -82,14 +82,19 @@ var lengthOfLIS = function (nums) {
     for(let i=n-1;i>=0;i--){
         for(let j=i;j>=0;j--){
             let exclude=dp[i+1][j];
+            
             let include=0;
             if(j-1===-1 || nums[i]>nums[j-1]){
                 include=1+dp[i+1][i+1];
             }
+            console.log('exclude',exclude,'exclude index',i+1,j,'include',include,'include index',i+1,i+1)
             dp[i][j]=Math.max(include,exclude);
+            
         }
     }
+    console.log(dp)
     return dp[0][0];
 }
 
-console.log(lengthOfLIS([300, 9, 2, 5, 3, 7, 500, 400])); //4
+console.log(lengthOfLIS([1,2,3])); //4
+// console.log(lengthOfLIS([300, 9, 2, 5, 3, 7, 500, 400])); //4
