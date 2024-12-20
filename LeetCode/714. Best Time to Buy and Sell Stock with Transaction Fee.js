@@ -29,6 +29,7 @@
  * @param {number} fee
  * @return {number}
  */
+// solve using claude + my own understanding
 var maxProfit = function(prices, fee) {
     let hold = -prices[0];  // Maximum profit if we're holding a stock
     let free = 0;          // Maximum profit if we're not holding anything
