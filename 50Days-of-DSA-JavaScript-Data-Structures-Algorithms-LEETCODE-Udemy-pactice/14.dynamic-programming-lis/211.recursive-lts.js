@@ -71,30 +71,48 @@ var lengthOfLIS = function (nums) {
         dp[curr][prev + 1] = Math.max(include, exclude);
         return dp[curr][prev + 1];
     }
-    let result= helper(0, -1)
+    let result = helper(0, -1)
     // console.log(dp)
     return result;
 }
-// tabulation with instructor
+// tabulation with instructor 2D array
 var lengthOfLIS = function (nums) {
-    const n=nums.length;
-    const dp=Array.from({length:n+1},()=>Array(n+1).fill(0));
-    for(let i=n-1;i>=0;i--){
-        for(let j=i;j>=0;j--){
-            let exclude=dp[i+1][j];
-            
-            let include=0;
-            if(j-1===-1 || nums[i]>nums[j-1]){
-                include=1+dp[i+1][i+1];
+    const n = nums.length;
+    const dp = Array.from({ length: n + 1 }, () => Array(n + 1).fill(0));
+    for (let i = n - 1; i >= 0; i--) {
+        for (let j = i; j >= 0; j--) {
+            let exclude = dp[i + 1][j];
+
+            let include = 0;
+            if (j - 1 === -1 || nums[i] > nums[j - 1]) {
+                include = 1 + dp[i + 1][i + 1];
             }
-            console.log('exclude',exclude,'exclude index',i+1,j,'include',include,'include index',i+1,i+1)
-            dp[i][j]=Math.max(include,exclude);
-            
+            console.log('exclude', exclude, 'exclude index', i + 1, j, 'include', include, 'include index', i + 1, i + 1)
+            dp[i][j] = Math.max(include, exclude);
+
         }
     }
     console.log(dp)
     return dp[0][0];
 }
+// tabulation with instructor 1D array
+var lengthOfLIS = function (nums) {
+    let n = nums.length;
+    if (n === 0) return 0;
 
-console.log(lengthOfLIS([1,2,3])); //4
+    let dp = Array(n).fill(1);
+    let max = 1;
+
+    for (let i = 1; i < n; i++) {
+        for (let j = 0; j < i; j++) {
+            if (nums[i] > nums[j] && dp[j] + 1 > dp[i]) {
+                dp[i] = dp[j] + 1;
+            }
+        }
+        if (dp[i] > max) max = dp[i];
+    }
+
+    return max;
+}
+console.log(lengthOfLIS([1, 2, 3])); //4
 // console.log(lengthOfLIS([300, 9, 2, 5, 3, 7, 500, 400])); //4
