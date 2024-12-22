@@ -46,3 +46,4 @@ var maxProfit = function(prices, fee) {
     return free; // Final answer is maximum profit without holding stock
 }
 console.log(maxProfit([1,3,2,8,4,9], 2)) // 8   (buy at 1, sell at 8, buy at 4, sell at 9)
+
