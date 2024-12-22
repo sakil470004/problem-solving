@@ -103,16 +103,18 @@ var lengthOfLIS = function (nums) {
     let dp = Array(n).fill(1);
     let max = 1;
 
+    // ?to check if all previous can be related to condition
     for (let i = 1; i < n; i++) {
         for (let j = 0; j < i; j++) {
+            //! check if current number is grater that previous number && if previous number maxValue+1 >currentNumber max value
             if (nums[i] > nums[j] && dp[j] + 1 > dp[i]) {
                 dp[i] = dp[j] + 1;
             }
         }
+        // check if I got max or not
         if (dp[i] > max) max = dp[i];
     }
 
     return max;
 }
-console.log(lengthOfLIS([1, 2, 3])); //4
-// console.log(lengthOfLIS([300, 9, 2, 5, 3, 7, 500, 400])); //4
+console.log(lengthOfLIS([300, 9, 2, 5, 3, 7, 500, 400])); //4
