@@ -13,7 +13,7 @@
 // Explanation: The longest increasing subsequence is [2,3,7,500], 
 // therefore the length is 4.
 
-// mynul solution// is not working
+// mynul solution// is not working // because cannot calculate count current index
 var lengthOfLIS = function (nums) {
     //Write code here 
     let result = 0;
