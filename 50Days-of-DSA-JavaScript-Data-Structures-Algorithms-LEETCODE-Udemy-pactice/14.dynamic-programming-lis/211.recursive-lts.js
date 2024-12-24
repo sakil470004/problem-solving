@@ -1,5 +1,5 @@
 
-//Udemy=>Jackson Kailath Teacher's course=> 50days leetcode=> Coding Exercise: LIS => Longest Increasing Subsequence
+//Udemy=>Jackson Kailath Teacher's course=> 50days leetcode=> module 14=> Coding Exercise: LIS => Longest Increasing Subsequence
 
 // Given an integer array nums, return the length of the longe st strictly increasing
 
@@ -117,6 +117,37 @@ var lengthOfLIS = function (nums) {
     }
 
     return max;
+}
+
+// binary search
+var lengthOfLIS =function (nums){
+    if(nums.length===0) return 0;
+    const binarySearch=(sub,num)=>{
+        let left =0;
+        let right=sub.length-1;
+        while(left<right){
+            let mid= Math.floor((left+right)/2)
+            if(sub[mid]<num){
+                left=mid+1
+            }else{
+                right=mid
+            }
+        }
+        return left;
+    }
+    let sub=[nums[0]]
+    for(let i=1; i<nums.length;i++){
+        let num=nums[i];
+        // if next number is grater that the last of sub number
+        if(num>sub[sub.length-1]){
+            sub.push(num);
+        }else{
+        // if not search index of immediate or equal index of current number and replace it with the current number
+            let index =binarySearch(sub,num);
+            sub[index]=num;
+        }
+    }
+    return sub.length;
 }
 console.log(lengthOfLIS([300, 9, 2, 5, 3, 7, 500, 400])); //4
 
