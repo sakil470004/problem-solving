@@ -45,4 +45,10 @@ var findLongestChain = function(pairs) {
     return max;
  
 };
+
+//  solution with instructor
+var findLongestChain = function(pairs) {
+    
+ 
+};
 console.log(findLongestChain([[2,3],[3,4],[4,5]]))
