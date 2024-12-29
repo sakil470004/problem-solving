@@ -46,9 +46,24 @@ var findLongestChain = function(pairs) {
  
 };
 
-//  solution with instructor
+//  solution with instructor// tabulation
 var findLongestChain = function(pairs) {
     
+    pairs.sort((a,b)=>a[0]-b[0]);
+    let n=pairs.length;
+    let dp=new Array(n).fill(1);
+    let max=1;
+
+    for(let i=1;i<n;i++){
+        for(let j=0;j<i;j++){
+            // ? [[2,3],[3,4],[4,5]] . ex if pairs[0][1](3) <pairs[2][0](4) and dp[j]+1 (2)> dp[i]
+            if(pairs[j][1]<pairs[i][0] && dp[j]+1>dp[i]){
+                dp[i]=dp[j]+1
+            }
+        }
+        if(dp[i]>max) max=dp[i];
+    }
+return max;
  
 };
 console.log(findLongestChain([[2,3],[3,4],[4,5]]))
