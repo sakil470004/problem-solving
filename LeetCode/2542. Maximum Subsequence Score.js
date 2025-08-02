@@ -48,6 +48,7 @@
  * @param {number} k
  * @return {number}
  */
+// wrong approach, need to sort based on nums2 values
 var maxScore = function(nums1, nums2, k) {
     const twoDArray = nums1.map((num, index) => [num, nums2[index]]);
 
