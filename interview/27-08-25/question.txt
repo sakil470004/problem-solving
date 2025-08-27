@@ -1,0 +1,45 @@
+# Tell me about Your Self
+I’m Mynul Islam, a Full-Stack Developer from Dhaka, Bangladesh. I specialize in React, Next.js, Node.js, and MongoDB, and I enjoy building scalable web applications with clean UI and strong backend architecture. Over the past few years, I’ve worked on projects like Ticket Fusion (an event booking platform with Stripe integration), Easy Bazaar (an e-commerce solution), and BargainBunny (a location-based marketplace). I’m also an active problem solver on platforms like LeetCode, which keeps my algorithmic and data structure skills sharp. Currently,
+Right now, I’m looking for remote opportunities as a Frontend or Full-Stack Developer where I can contribute to building scalable web apps and grow with the team.”
+
+✅ How to Answer: Tell me about yourself
+
+Start with a short intro
+
+Your name, location (optional), current role or area of expertise.
+
+Example: “I’m Mynul Islam, a Full-Stack Developer specializing in React, Next.js, and Node.js.”
+
+Highlight your technical skills & stack
+
+Mention the main technologies you’re strong at.
+
+Example: “I work mainly with React, Next.js, Node.js, and MongoDB, and I also have experience with React Native, Firebase, and AWS deployment.”
+
+Showcase your project experience
+
+Pick 1–2 key projects that demonstrate real skills.
+
+Example: “I built Ticket Fusion, an event booking platform with Stripe payments, and BargainBunny, a location-based marketplace with geolocation search.”
+
+Mention problem-solving & learning
+
+Shows growth mindset.
+
+Example: “I practice coding challenges on LeetCode and keep up with new frameworks by applying them in personal projects.”
+
+End with your goal
+
+Why you’re here, what role you’re seeking.
+
+Example: “Right now, I’m looking for remote opportunities as a Frontend or Full-Stack Developer where I can contribute to building scalable web apps and grow with the team.”
+
+--
+Did you used Jest on your last job? 
+How you used Github on you last job?
+How you used React and React Native? 
+---
+Today Learn 
+--
+Always Try to impress that You are ready to learn. 
+I need to make memorize properly to Tell me about Yourself. Make video about My self.
