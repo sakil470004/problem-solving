@@ -12,6 +12,7 @@ function isValid(s) {
     } else {
       stack.push(char);
     }
+    console.log(stack);
   }
   return stack.length === 0;
 }
