@@ -48,5 +48,5 @@ function findAndDeleteNodeModules(startPath, minDepth, currentDepth = 0) {
 }
 
 const targetDirectory = './'; // Replace with your root folder path
-const minDepth = 8; // Minimum depth to start deleting
+const minDepth = 0; // Minimum depth to start deleting (0 = all levels)
 findAndDeleteNodeModules(targetDirectory, minDepth);
