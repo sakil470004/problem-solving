@@ -1,0 +1,6 @@
+Today I learn web optimization. Here are some key points I learned:
+1. We can use google lighthouse to analyze web performance.
+2. We can see on lighthouse report that some images are not optimized.
+3. We can use image compression tools to reduce image size without losing quality.
+4. We can use lazy loading for images to improve page load time.
+5. We can minify CSS and JavaScript files to reduce their size.
