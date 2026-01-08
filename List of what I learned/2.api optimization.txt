@@ -1,0 +1,8 @@
+Programming Here are some key points I learned about API optimization:
+1. Use efficient data formats like JSON or Protocol Buffers to reduce payload size.
+2. Implement caching strategies to minimize redundant API calls and improve response times.
+3. Optimize database queries to ensure fast data retrieval and reduce server load.
+4. Use pagination for endpoints that return large datasets to limit the amount of data sent in each response.
+5. Monitor API performance regularly using tools like Postman or New Relic to identify and address bottlenecks.
+6. Implement rate limiting to prevent abuse and ensure fair usage of the API.
+7. Use compression techniques like Gzip or Brotli to reduce the size of API responses.      
