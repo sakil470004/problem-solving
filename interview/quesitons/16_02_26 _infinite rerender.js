@@ -15,7 +15,6 @@ function App() {
 
 
 // Answer:
-// Answer:
 
 // useEffect depends on data
 
