@@ -18,3 +18,10 @@ const Child = React.memo(({ value }) => {
 
 
 // If value doesn’t change → no re-render.
+// Why it matters:
+
+// - Performance optimization
+
+// - Avoid unnecessary renders
+
+// - Improve user experience
