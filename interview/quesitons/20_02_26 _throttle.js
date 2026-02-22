@@ -11,8 +11,9 @@ function throttle(fn, delay) {
       lastCall = now;
       fn(...args);
     }
+    }
   };
-}
+
 
 const handleScroll = throttle(() => {
   console.log("Scroll event handled");
