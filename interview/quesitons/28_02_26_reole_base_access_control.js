@@ -1,20 +1,19 @@
-37. What causes memory leaks in React?
+38. How would you implement role-based access control in React?
 
 Answer:
 
-Uncleaned timers
+Store user role in auth context
 
-Unremoved event listeners
+Create ProtectedRoute component
 
-Unsubscribed WebSocket
+function ProtectedRoute({ role, children }) {
+  const { user } = useAuth();
+  if (user.role !== role) return <Navigate to="/" />;
+  return children;
+}
 
-Setting state after unmount
+Security rule:
+Frontend hides UI.
+Backend enforces permission.
 
-Example fix:
-
-useEffect(() => {
-  const interval = setInterval(() => {}, 1000);
-  return () => clearInterval(interval);
-}, []);
-
-Always clean up side effects.
+Never trust frontend alone.
