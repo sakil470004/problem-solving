@@ -1,6 +1,6 @@
-46. What is the difference between call, apply, and bind?
+//? 46. What is the difference between call, apply, and bind?
 
-Answer:
+//! Answer:
 
 //! They control this.
 
