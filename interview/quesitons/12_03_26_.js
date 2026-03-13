@@ -1,14 +1,27 @@
-Q. Senior Debug Question:
-Why does this component re-render even though props didn’t change?
+You need to build a real-time chat system in React + Node. What architecture would you use?
 
-Possible reasons:
-- Parent re-rendered
-- New object/array created inline
-- New function reference passed
-- Context value changed
-- StrictMode double rendering (development only)
+Answer: Here is How I will try to approch 
+Frontend:
+- React
+- WebSocket client
 
-Fix:
-- Memoize
-- Move logic outside render
-- Use React.memo
+Backend:
+- Node + WebSocket (or Socket.io)
+- Redis for pub/sub (if multiple servers)
+
+Scaling:
+- Horizontal scaling
+- Load balancer
+- Sticky sessions
+- Message queue
+
+Database:
+- MongoDB for message storage
+- Index by roomId + timestamp
+
+Security:
+- Authenticate socket connection with JWT
+- Rate limit messages
+
+Production mindset:
+- Stateless backend + centralized message broker.
