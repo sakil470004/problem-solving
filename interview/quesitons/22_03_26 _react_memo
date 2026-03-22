@@ -1,0 +1,12 @@
+Q. What causes React components to re-render?
+
+A component re-renders when:
+- State changes
+- Props change
+- Parent component re-renders
+- Context changes
+
+Optimization tools:
+- React.memo
+- useMemo
+- useCallback
