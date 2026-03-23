@@ -1,0 +1,16 @@
+Q5. Difference between useMemo and useCallback
+
+- useMemo
+Memoizes values
+
+- useCallback
+- Memoizes functions
+
+// - useMemo
+const value = useMemo(() => compute(), [deps])
+// - useCallback
+const fn = useCallback(() => doSomething(), [deps])
+
+
+
+
